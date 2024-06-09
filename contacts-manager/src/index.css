@@ -1,0 +1,97 @@
+/* styles.css */
+
+/* Estilos para o corpo da página */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f8f8;
+}
+
+/* Estilos para o contêiner principal */
+.container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para o cabeçalho */
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Estilos para o formulário de contato */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza os itens horizontalmente */
+}
+
+form input {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: calc(100% - 16px); /* Largura ajustada */
+}
+
+form button {
+  margin-top: 10px; /* Espaço adicional entre o último campo e o botão */
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: calc(100% - 16px); /* Largura ajustada */
+  max-width: 200px; /* Largura máxima do botão */
+  box-sizing: border-box; /* Garante que o padding não afete a largura total */
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para a lista de contatos */
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-item {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  margin: 10px 0;
+}
+
+.contact-item span {
+  margin-right: 10px;
+}
+
+.contact-item button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.contact-item button:hover {
+  background-color: #bd2130;
+}
+
+
+
+
+
+
