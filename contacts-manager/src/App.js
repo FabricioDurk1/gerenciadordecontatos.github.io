@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactList';
+import './App.css';
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -10,7 +11,7 @@ function App() {
   useEffect(() => {
     async function fetchContacts() {
       try {
-        const response = await axios.get('http://localhost:5000/api/entidade');
+        const response = await axios.get('http://localhost:5000/api/contacts');
         setContacts(response.data);
       } catch (error) {
         console.error('Erro ao obter contatos:', error);
@@ -51,4 +52,3 @@ function App() {
 }
 
 export default App;
-

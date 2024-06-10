@@ -1,79 +1,73 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace SuaAplicacao.Controllers
+namespace YourNamespace.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EntidadeController : ControllerBase
+    public class ContactsController : ControllerBase
     {
-        private static List<Entidade> _entidades = new List<Entidade>();
+        private static List<Contact> contacts = new List<Contact>();
 
-        // GET: api/entidade
         [HttpGet]
-        public ActionResult<IEnumerable<Entidade>> GetEntidades()
+        public ActionResult<IEnumerable<Contact>> GetContacts()
         {
-            return _entidades;
+            return Ok(contacts);
         }
 
-        // GET: api/entidade/5
         [HttpGet("{id}")]
-        public ActionResult<Entidade> GetEntidade(int id)
+        public ActionResult<Contact> GetContact(int id)
         {
-            var entidade = _entidades.FirstOrDefault(e => e.Id == id);
-            if (entidade == null)
+            var contact = contacts.FirstOrDefault(c => c.Id == id);
+            if (contact == null)
             {
                 return NotFound();
             }
-            return entidade;
+            return Ok(contact);
         }
 
-        // POST: api/entidade
         [HttpPost]
-        public ActionResult<Entidade> PostEntidade(Entidade entidade)
+        public ActionResult<Contact> CreateContact(Contact contact)
         {
-            _entidades.Add(entidade);
-            return CreatedAtAction(nameof(GetEntidade), new { id = entidade.Id }, entidade);
+            contact.Id = contacts.Count > 0 ? contacts.Max(c => c.Id) + 1 : 1;
+            contacts.Add(contact);
+            return CreatedAtAction(nameof(GetContact), new { id = contact.Id }, contact);
         }
 
-        // PUT: api/entidade/5
         [HttpPut("{id}")]
-        public IActionResult PutEntidade(int id, Entidade entidade)
+        public IActionResult UpdateContact(int id, Contact updatedContact)
         {
-            if (id != entidade.Id)
-            {
-                return BadRequest();
-            }
-
-            var index = _entidades.FindIndex(e => e.Id == id);
-            if (index == -1)
+            var contact = contacts.FirstOrDefault(c => c.Id == id);
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            _entidades[index] = entidade;
+            contact.Name = updatedContact.Name;
+            contact.Email = updatedContact.Email;
+            contact.Phone = updatedContact.Phone;
             return NoContent();
         }
 
-        // DELETE: api/entidade/5
         [HttpDelete("{id}")]
-        public IActionResult DeleteEntidade(int id)
+        public IActionResult DeleteContact(int id)
         {
-            var index = _entidades.FindIndex(e => e.Id == id);
-            if (index == -1)
+            var contact = contacts.FirstOrDefault(c => c.Id == id);
+            if (contact == null)
             {
                 return NotFound();
             }
 
-            _entidades.RemoveAt(index);
+            contacts.Remove(contact);
             return NoContent();
         }
     }
 
-    public class Entidade
+    public class Contact
     {
         public int Id { get; set; }
-        // Adicione outros campos necessários aqui
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
     }
 }
+
